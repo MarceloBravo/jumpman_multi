@@ -126,7 +126,7 @@ class SceneB extends Phaser.Scene{
         //Configurando el cuadro de texto del puntaje
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
         console.log(usuario)
-        this.userText = this.add.text(game.config.width / 2, 16, usuario.displayName, { fontSize: '32px', fill: '#000' });
+        this.userText = this.add.text(game.config.width / 2, 16, usuario.displayName.padStart(20), { fontSize: '32px', fill: '#000' });
     
         bombs = this.physics.add.group();
     
@@ -145,13 +145,20 @@ class SceneB extends Phaser.Scene{
             //Agregando el botón de reiniciar una vez el juego haya terminado
             const button = this.add.sprite( (game.config.width / 2) - 53, game.config.height / 2, 'btn-game-over')
             .setInteractive()
-            .on('pointerdown', () => 
+            .on('pointerdown', async () => 
                 {
+                    await firebase.database().ref('jumpman/' + usuario.displayName).set({
+                        puntaje: score,
+                    }).catch(error => {
+                        console.log(error);
+                        alert('No pudimos registrar tu puntaje. Lo sentimos.');
+                    });
                     this.scene.start("SceneC");
                     this.scene.bringToTop("SceneC");
                 }
             );
         }
+        
     }
     
     //Se ejecutará periódicamente . Es un buen lugar para revisar eventos como la colisión entre objetos del juego.
