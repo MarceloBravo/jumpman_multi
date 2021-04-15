@@ -23,8 +23,8 @@ class SceneA extends Phaser.Scene{
         this.buttonRegister = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 100, 'buttonRegister').setInteractive();
 
 
-        //button.on('pointerover', function (event) { /* Do something when the mouse enters */ });
-        //button.on('pointerout', function (event) { /* Do something when the mouse exits. */ });
+        this.buttonLogin.on('pointerover', function (event) { game.canvas.style.cursor = "pointer"; });
+        this.buttonLogin.on('pointerout', function (event) { game.canvas.style.cursor = "default"; });
         this.buttonLogin.on('pointerdown', 
             () => {
                 let txtEmail = document.getElementById('txt-email');
@@ -34,6 +34,8 @@ class SceneA extends Phaser.Scene{
             }
         ); 
 
+        this.buttonRegister.on('pointerover', function (event) { game.canvas.style.cursor = "pointer"; });
+        this.buttonRegister.on('pointerout', function (event) { game.canvas.style.cursor = "default"; });
         this.buttonRegister.on('pointerdown', 
             () => {
                 let txtEmail = document.getElementById('txt-email');

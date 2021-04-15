@@ -14,11 +14,14 @@ class SceneNombre extends Phaser.Scene{
         this.add.image(400, 300, 'bgUserName');
         document.getElementById('txt-username').style.display = 'block';
         this.buttonPlay = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 200, 'buttonPlay').setInteractive();
+        this.buttonPlay.on('pointerover', function (event) { game.canvas.style.cursor = "pointer"; });
+        this.buttonPlay.on('pointerout', function (event) { game.canvas.style.cursor = "default"; });
         this.buttonPlay.on('pointerdown', 
             () => {
                 this.actualizarNombre();
             }
         ); 
+        
     }
 
     update(time, delta){
