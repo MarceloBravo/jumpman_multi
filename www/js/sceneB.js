@@ -24,7 +24,7 @@ class SceneB extends Phaser.Scene{
             'assets/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
-        this.load.image('btn-game-over', 'assets/btn-game-over.png');
+        this.load.image('btn-game-over', 'assets/gameover2.png');
     }
     
     //Se ejecutará al momento de que el juego inicie. Es un buen lugar para ingresar todos los objetos que se mostrarán en pantalla.
@@ -144,6 +144,17 @@ class SceneB extends Phaser.Scene{
             
             //Agregando el botón de reiniciar una vez el juego haya terminado
             const button = this.add.sprite( (game.config.width / 2) - 53, game.config.height / 2, 'btn-game-over')
+            setTimeout(async ()=>{
+                await firebase.database().ref('jumpman/' + usuario.displayName).set({
+                    puntaje: score,
+                }).catch(error => {
+                    console.log(error);
+                    alert('No pudimos registrar tu puntaje. Lo sentimos.');
+                });
+                this.scene.start("SceneC");
+                this.scene.bringToTop("SceneC");
+            },3000);
+            /*
             .setInteractive()
             .on('pointerdown', async () => 
                 {
@@ -157,6 +168,7 @@ class SceneB extends Phaser.Scene{
                     this.scene.bringToTop("SceneC");
                 }
             );
+            */
         }
         
     }
