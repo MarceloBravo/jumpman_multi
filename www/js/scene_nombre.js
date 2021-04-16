@@ -8,6 +8,7 @@ class SceneNombre extends Phaser.Scene{
     preload(){
         this.load.image('bgUserName', 'assets/login.png');
         this.load.image('buttonPlay', 'assets/btn-jugar.png');
+        this.load.image('downButtonPlay', 'assets/btn-jugar-dark.png');
     }
 
     create(){
@@ -18,6 +19,13 @@ class SceneNombre extends Phaser.Scene{
         this.buttonPlay.on('pointerout', function (event) { game.canvas.style.cursor = "default"; });
         this.buttonPlay.on('pointerdown', 
             () => {
+                this.buttonPlay = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 200, 'downButtonPlay');
+                this.actualizarNombre();
+            }
+        ); 
+        this.buttonPlay.on('pointerup', 
+            () => {
+                this.buttonPlay = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 200, 'buttonPlay').setInteractive();
                 this.actualizarNombre();
             }
         ); 

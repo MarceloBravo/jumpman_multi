@@ -10,8 +10,9 @@ class SceneA extends Phaser.Scene{
         this.load.image('sky', 'assets/sky.png');
         this.load.image('bgLogin', 'assets/login2.png');
         this.load.image('buttonLogin', 'assets/btn-login.png');
+        this.load.image('DownButtonLogin', 'assets/btn-login-dark.png');
         this.load.image('buttonRegister', 'assets/btn-register.png');
-
+        this.load.image('downButtonRegister', 'assets/btn-register-dark.png');
     }
 
     create(){
@@ -27,9 +28,16 @@ class SceneA extends Phaser.Scene{
         this.buttonLogin.on('pointerout', function (event) { game.canvas.style.cursor = "default"; });
         this.buttonLogin.on('pointerdown', 
             () => {
+                this.buttonLogin = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 200, 'DownButtonLogin');
+            }
+        ); 
+        this.buttonLogin.on('pointerup', 
+            () => {
                 let txtEmail = document.getElementById('txt-email');
                 let txtPwd = document.getElementById('txt-password');
                 let img = document.getElementById('img-show-password');
+                this.buttonLogin = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 200, 'buttonLogin');
+                this.buttonRegister = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 100, 'buttonRegister').setInteractive();
                 this.loguear(txtEmail, txtPwd, img);
             }
         ); 
@@ -38,9 +46,15 @@ class SceneA extends Phaser.Scene{
         this.buttonRegister.on('pointerout', function (event) { game.canvas.style.cursor = "default"; });
         this.buttonRegister.on('pointerdown', 
             () => {
+                this.buttonRegister = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 100, 'downButtonRegister');
+            }
+        ); 
+        this.buttonRegister.on('pointerup', 
+            () => {
                 let txtEmail = document.getElementById('txt-email');
                 let txtPwd = document.getElementById('txt-password');
                 let img = document.getElementById('img-show-password');
+                this.buttonRegister = this.add.sprite((game.config.width / 2) - 52.5, game.config.height - 100, 'buttonRegister').setInteractive();
                 this.registrarUsuario(txtEmail, txtPwd, img);
             }
         ); 
