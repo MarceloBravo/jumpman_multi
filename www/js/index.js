@@ -1,5 +1,5 @@
 const config = {
-    type: Phaser.AUTO,
+    type: Phaser.AUTO,  //El phaser identificará si el navegador puede correr WEBGL o CANVAS
     width: 800,
     height: 600,
     physics: {

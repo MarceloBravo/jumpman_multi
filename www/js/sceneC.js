@@ -25,6 +25,8 @@ class SceneC extends Phaser.Scene{
             
             scoreText = this.add.text(game.config.width / 8, 10, `          RANKING         `, { fontSize: '32px', fill: '#999' });
             scoreText = this.add.text(game.config.width / 8, 60, `Lugar       ${"Nombre".padEnd(10)}    Puntos`, { fontSize: '32px', fill: '#999' });
+            
+            //Recoprriendo la matriz de puntajes y mostrando los puntajes
             for(var p=0; p < this.puntajes.length; p++){
                 scoreText = this.add.text(game.config.width / 8, textTop, `${p + 1}°       ${(this.puntajes[p][0]).padEnd(16)}   ${this.puntajes[p][1].puntaje}`, { fontSize: '32px', fill: '#999' });
                 textTop += 50;

@@ -33,8 +33,8 @@ body {
 
 #img-show-password{
     position: absolute;
-    height: 5em;
-    top: 45%;
+    height: 3em;
+    top: 47%;
     left: 34%;
     cursor: pointer;
 }
